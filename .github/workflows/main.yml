@@ -78,7 +78,7 @@ jobs:
       - name: Apply SUSFS Patches
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG/"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           
           echo "Applying SUSFS patches..."
           
@@ -107,7 +107,7 @@ jobs:
       - name: Apply KSU Hooks
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG/"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           # Apply additional patch
           cp ../../../kernel_patches/next/next_hooks_4.14.patch ./
           patch -p1 --fuzz=3 < ./next_hooks_4.14.patch
@@ -115,7 +115,7 @@ jobs:
       - name: Add SUSFS Configuration Settings
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG/"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           
           echo "Adding configuration settings to sunfish_defconfig..."
 
@@ -149,7 +149,7 @@ jobs:
       - name: Run sed and perl Commands
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG/p"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           
           echo "Running sed commands..."
           
@@ -167,7 +167,7 @@ jobs:
       - name: Build the Kernel
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           
           echo "Building the kernel..."
           ./build_sunfish.sh
@@ -176,12 +176,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: source-${{ env.CONFIG }}
-          path: ${{ env.CONFIG }}/out
+          path: ${{ env.CONFIG }}/android_kernel_google_msm-4.14/out
 
       - name: Create Bootimgs Folder and Copy Images
         run: |
           echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG"
+          cd "$CONFIG/android_kernel_google_msm-4.14"
           
           echo "Copying Image"
           cp ./out/android-msm-pixel-4.14/dist/Image.lz4 ../AnyKernel3/Image.lz4
