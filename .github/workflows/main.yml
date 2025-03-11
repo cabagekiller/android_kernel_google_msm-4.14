@@ -1,7 +1,7 @@
 name: Build Coral 4.14 Kernel
 
 on:
-  workflow_call:  # This allows this workflow to be called from another workflow
+  workflow_dispatch:
   
 jobs:
   build-kernel-4-14-kernelsu-susfs:
